@@ -1,0 +1,33 @@
+.layoutBox {
+  display: flex;
+
+  .navWrap {
+    width: 15%;
+    background-color: var(--white-color-1);
+  }
+
+  .pageDepth {
+    color: var(--white-color-1);
+    font-size: var(--middle-font-size);
+    font-weight: 100;
+  }
+  .pageTitle {
+    color: var(--white-color-1);
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin: var(--space-3) 0;
+  }
+
+  .content {
+    width: 85%;
+    min-height: 100vh;
+    padding: 3%;
+    background: rgb(250, 80, 20);
+    background: linear-gradient(
+      180deg,
+      rgba(250, 80, 20, 1) 30%,
+      rgba(244, 244, 244, 1) 30%,
+      rgba(244, 244, 244, 1) 100%
+    );
+  }
+}

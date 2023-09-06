@@ -1,0 +1,59 @@
+.mainLogo {
+  padding: 15% 15% 5%;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+.mainNav {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--middle-font-size);
+  margin-top: 8%;
+  font-weight: bold;
+
+  .toggleItem {
+    cursor: pointer;
+    &.active {
+      .toggleIcon {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  .toggleItem,
+  a {
+    display: block;
+    padding: var(--space-3) 15%;
+  }
+
+  > li {
+    margin-bottom: var(--space-2);
+  }
+
+  .subNav {
+    display: none;
+    font-size: var(--small-font-size);
+    font-weight: 400;
+    margin-top: var(--space-2);
+
+    &.active {
+      display: block;
+    }
+
+    a {
+      color: var(--gray-color-1);
+
+      &.active {
+        background-color: var(--barogo-color-3);
+        color: var(--barogo-color-1);
+      }
+    }
+  }
+
+  .toggleIcon {
+    display: inline-block;
+    transform: rotate(90deg);
+    margin-left: var(--space-1);
+  }
+}
