@@ -4,14 +4,13 @@ import DatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import { useState } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
-import Button from "@/components/Button/Button";
 
 export function FilterBox({ children }) {
   return (
     <div className={styles.filterBox}>{children}</div>
   )
 }
-export function FilterCol({ filterTitle, filterData = [], line = true, filterType = "일반" }) {
+export function FilterCol({ filterTitle = "", filterData = [], line = true, filterType = "일반" }) {
 
   // 날짜 선택 컴포넌트 - 날짜 변경 처리용
   const [startDate, setStartDate] = useState(new Date());
@@ -25,7 +24,7 @@ export function FilterCol({ filterTitle, filterData = [], line = true, filterTyp
     <div className={styles.filter_col + (line ? ` ` + styles.line : "")}>
       <h4 className={styles.filter_title}>{filterTitle}</h4>
       {
-        filterType === "일반" && (
+        filterType === "일반" ? (
           <ul className={styles.filter_list}>
             {filterData.map((item, index) => {
               return (
@@ -34,11 +33,9 @@ export function FilterCol({ filterTitle, filterData = [], line = true, filterTyp
                 </li>
               )
             })}
-          </ul>)
-      }
-      {
-        filterType === "날짜" && (
-          <div id={styles.filter_datepicker}>
+          </ul>
+        ) : filterType === "날짜" ? (
+          <div id="filter_datepicker">
             <DatePicker
               shouldCloseOnSelect={false} // 날짜 선택시 달력 닫히지 않도록 설정
               locale={ko} // 한국어 설정
@@ -50,12 +47,9 @@ export function FilterCol({ filterTitle, filterData = [], line = true, filterTyp
               dayClassName={() => styles.date_day}
             />
           </div>
-        )
-      }
-      {
-        filterType === "날짜기간" && (
+        ) : filterType === "날짜기간" && (
           <>
-            <div id={styles.filter_datepicker}>
+            <div id="filter_datepicker">
               <DatePicker
                 shouldCloseOnSelect={false} // 날짜 선택시 달력 닫히지 않도록 설정
                 locale={ko} // 한국어 설정

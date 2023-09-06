@@ -522,7 +522,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.dataTop + ` wide`}>
+        <div className={styles.dataTop + ` maxWidth`}>
           {data.data1.map((item, index) => {
             const varianceNum = Number(item.variance.replace(/[^0-9]/g, ""));
             const varianceSign = item.variance.replace(/[0-9]/g, "");
@@ -560,7 +560,7 @@ export default function Home() {
         </div>
 
         <div className={styles.memberData}>
-          <div className="basicBox wide">
+          <div className="basicBox">
             <h3>회원 티어 분포</h3>
             <FilterBox>
               <FilterCol

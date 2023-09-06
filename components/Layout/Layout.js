@@ -42,7 +42,7 @@ export default function Layout({ children }) {
 
   return (
     <div className={styles.layoutBox}>
-      <div className={styles.navWrap}><Nav /></div>
+      <div className={styles.navWrap}><Nav subNavList={pageInfo} /></div>
       <div className={styles.content}>
         {parentLink && pageTitleBox()}
         {children}

@@ -153,13 +153,6 @@ section {
   display: block;
 }
 
-select {
-  font-family: "Pretendard", Arial, Helvetica, sans-serif;
-  appearance: none;
-  background: url("/images/arrow-down.png") no-repeat 93% 50%;
-  background-size: 14px 8px;
-}
-
 html,
 body {
   width: 100%;
@@ -225,6 +218,8 @@ input {
 }
 
 div.basicBox {
+  width: 100%;
+  max-width: 900px;
   display: inline-block;
   border-radius: 20px;
   background-color: var(--white-color-1);
@@ -232,8 +227,7 @@ div.basicBox {
   box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.2);
 }
 
-div.wide {
-  width: 100%;
+.maxWidth {
   max-width: 900px;
 }
 
@@ -248,4 +242,9 @@ h2.pageTitle {
   font-weight: bold;
   color: var(--white-color-1);
   margin-bottom: var(--space-6);
+}
+
+.selectBox {
+  text-align: center;
+  width: 125px;
 }

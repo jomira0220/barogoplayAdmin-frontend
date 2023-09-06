@@ -4,7 +4,10 @@
   padding: var(--space-4) 0;
   font-size: var(--small-font-size);
 
-  #filter_datepicker {
+  div[id="filter_datepicker"] {
+    display: flex;
+    align-items: center;
+
     div[class="react-datepicker__triangle"] {
       &::after {
         border-bottom-color: var(--white-color-1);
@@ -61,7 +64,8 @@
 
   .filter_list {
     display: flex;
-    gap: 50px;
+    gap: 35px 50px;
+    flex-wrap: wrap;
 
     .filter_Item.active {
       a {
