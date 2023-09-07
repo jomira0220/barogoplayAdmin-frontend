@@ -49,7 +49,6 @@ export default function MemberDetailPage() {
               </h3>
               {
                 Object.values(infoItemData).map((value, index) => {
-                  console.log(typeof (value))
                   return (
                     <div key={index} className={styles.infoItem}>
                       <div className={styles.itemTitle}>{infoItemTitle[title][index]}</div>

@@ -21,13 +21,18 @@ export default function NewMessagePage() {
 
   const [startDate, setStartDate] = useState(new Date());
   const [selectOnline, setSelectOnline] = useState(null);
+  const [MessageTypeSelect, SetMessageTypeSelect] = useState(true);
+
+
+  const MessageTypeSelectEvent = () => {
+    SetMessageTypeSelect(!MessageTypeSelect)
+  }
 
   const submitComplete = () => {
     alert('발송 완료')
   }
 
-
-
+  const areaTextLen = document.querySelector(`${styles.textAreaBox}`).value.length;
   return (
     <>
       <div id={styles.newMessageWrap} className='basicBox'>
@@ -39,7 +44,7 @@ export default function NewMessagePage() {
           <h3>발송 메모</h3>
           <input type="text" />
         </div>
-        <div>
+        <div className={styles.radioBox}>
           <h3>발송 대상</h3>
           <fieldset>
             <div>
@@ -50,70 +55,78 @@ export default function NewMessagePage() {
             <div>
               <input type="radio" id="selectMember" name="member" value="selectMember" />
               <label htmlFor="selectMember">특정 대상 보내기</label>
-              <Button variantStyle="color" sizeStyle="sm">CSV업로드</Button>
+              <Button className={styles.csvButton} variantStyle="color" sizeStyle="xs">CSV업로드</Button>
             </div>
           </fieldset>
         </div>
 
-        <div>
+        <div className={styles.radioBox}>
           <h3>발송 유형 선택</h3>
-          <fieldset>
+          <fieldset className={styles.typeChoice}>
             <div>
-              <input type="radio" id="type_Message" name="type" value="message" defaultChecked />
+              <input type="radio" onClick={() => MessageTypeSelectEvent()} id="type_Message" name="type" value="message" defaultChecked />
               <label htmlFor="type_Message">메세지</label>
             </div>
 
             <div>
-              <input type="radio" id="type_Gift" name="type" value="gift" />
+              <input type="radio" onClick={() => MessageTypeSelectEvent()} id="type_Gift" name="type" value="gift" />
               <label htmlFor="type_Gift">선물</label>
             </div>
           </fieldset>
         </div>
 
-        {/* 발송유형 - 메세지 */}
-        <div className={`${styles.typeBox} ${styles.message}`}>
-          <div>
-            <h4>내용</h4>
-            <textarea placeholder='내용을 입력해주세요' maxLength="30"></textarea>
+        {/* //!발송유형 - 메세지 */}
+        {MessageTypeSelect &&
+          <div className={`${styles.typeBox} ${styles.messageType}`}>
+            <div>
+              <h4>내용</h4>
+              <textarea
+                className={styles.textAreaBox}
+                placeholder='내용을 입력해주세요'
+                maxLength="30">
+                <span style="color:#aaa;" id="counter">({areaTextLen} / 최대 30자)</span>
+              </textarea>
+            </div>
+            <div>
+              <h4>링크</h4>
+              <input type="text" placeholder='연결할 링크를 입력해주세요' />
+            </div>
           </div>
-          <div>
-            <h4>링크</h4>
-            <input type="text" placeholder='연결할 링크를 입력해주세요' />
-          </div>
-        </div>
+        }
 
-        {/* 발송유형 - 선물 */}
-        <div className={`${styles.typeBox} ${styles.gift}`}>
-          <div>
-            <h4>기프티콘</h4>
-            <Select
-              className={styles.selectBox}
-              options={selOption}
-              onChange={setSelectOnline}
-              defaultValue={{ label: "기프티콘을 선택해주세요", value: 0 }} // 기본값 지정
-              theme={(theme) => ({
-                ...theme,
-                colors: {
-                  ...theme.colors,
-                  primary: "#000",
-                  primary25: "#cfcfcf",
-                },
-              })}
-              styles={{
-                option: (base) => ({
-                  ...base,
-                  borderBottom: "1px solid #ccc",
-                  padding: "10px 15px",
-                }),
-              }}
-            />
+        {/* //!발송유형 - 선물 */}
+        {!MessageTypeSelect &&
+          <div className={`${styles.typeBox} ${styles.giftType}`}>
+            <div>
+              <h4>기프티콘</h4>
+              <Select
+                className={styles.selectBox}
+                options={selOption}
+                onChange={setSelectOnline}
+                defaultValue={{ label: "기프티콘을 선택해주세요", value: 0 }} // 기본값 지정
+                theme={(theme) => ({
+                  ...theme,
+                  colors: {
+                    ...theme.colors,
+                    primary: "#000",
+                    primary25: "#cfcfcf",
+                  },
+                })}
+                styles={{
+                  option: (base) => ({
+                    ...base,
+                    borderBottom: "1px solid #ccc",
+                    padding: "10px 15px",
+                  }),
+                }}
+              />
+            </div>
+            <div>
+              <h4>포인트</h4>
+              <input className={styles.point} type="number" placeholder='지급할 포인트 입력' /> P
+            </div>
           </div>
-          <div>
-            <h4>포인트</h4>
-            <input className={styles.point} type="number" placeholder='지급할 포인트 입력' /> P
-          </div>
-        </div>
-
+        }
 
         <div>
           <h3>예약 발송</h3>

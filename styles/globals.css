@@ -153,6 +153,11 @@ section {
   display: block;
 }
 
+input[type="radio"] {
+  margin: 0;
+  filter: saturate(0);
+}
+
 html,
 body {
   width: 100%;

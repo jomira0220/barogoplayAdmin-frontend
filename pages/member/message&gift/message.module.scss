@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  align-items: flex-start;
+  font-size: var(--small-font-size);
 
   h3 {
     margin-bottom: 0;
@@ -19,34 +21,65 @@
     gap: 15px;
   }
 
+  .radioBox {
+    input {
+      margin-right: var(--space-1);
+    }
+    h3 {
+      margin-bottom: var(--space-3);
+    }
+
+    .csvButton {
+      margin-left: var(--space-2);
+    }
+  }
+
   fieldset {
     display: flex;
     align-items: center;
+    gap: var(--space-6);
+    > div {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .typeBox {
-    // flex-direction: column;
-    // align-items: flex-start;
-
     > div {
       margin-bottom: 20px;
     }
 
-    &.message {
-      textarea {
+    &.messageType {
+      .textAreaBox {
         border: 1px solid var(--gray-color-2);
+        border-radius: 5px;
+        min-width: 400px;
+        min-height: 100px;
+        padding: var(--space-3);
+      }
+    }
+
+    &.giftType {
+      .selectBox {
+        max-width: 400px;
       }
     }
   }
 
   input {
+    font-size: var(--small-font-size);
+  }
+  input[type="text"] {
     padding: var(--space-2);
     border: 1px solid var(--gray-color-2);
     border-radius: 5px;
     min-width: 400px;
+  }
 
-    &.point {
-      min-width: 100px;
-    }
+  .point {
+    min-width: 100px;
+    padding: var(--space-2);
+    border: 1px solid var(--gray-color-2);
+    border-radius: 5px;
   }
 }
