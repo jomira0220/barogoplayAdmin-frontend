@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react';
-import styles from './message.module.scss';
+import styles from '@/styles/form.module.scss';
 import Select from "react-select";
 
 
@@ -14,8 +14,6 @@ const selOption = [
   { value: "선물4", label: "선물4" },
   { value: "선물5", label: "선물5" },
 ];
-
-
 
 export default function NewMessagePage() {
 
@@ -32,10 +30,14 @@ export default function NewMessagePage() {
     alert('발송 완료')
   }
 
-  const areaTextLen = document.querySelector(`${styles.textAreaBox}`).value.length;
+  const [textValue, setTextValue] = useState(0);
+  const handSetTextArea = (e) => {
+    setTextValue(e.target.value.length);
+  }
+
   return (
     <>
-      <div id={styles.newMessageWrap} className='basicBox'>
+      <div id={styles.newMessageWrap} className={`basicBox ${styles.formWarp}`}>
         <div className={styles.lineBox}>
           <h3>발송 내용</h3>
           <input type="text" />
@@ -78,14 +80,15 @@ export default function NewMessagePage() {
         {/* //!발송유형 - 메세지 */}
         {MessageTypeSelect &&
           <div className={`${styles.typeBox} ${styles.messageType}`}>
-            <div>
+            <div className={styles.textAreaBox}>
               <h4>내용</h4>
               <textarea
-                className={styles.textAreaBox}
                 placeholder='내용을 입력해주세요'
-                maxLength="30">
-                <span style="color:#aaa;" id="counter">({areaTextLen} / 최대 30자)</span>
+                maxLength="29"
+                onChange={(e) => { handSetTextArea(e) }}
+              >
               </textarea>
+              <span className={styles.textAreaCount}>{`( ${textValue} / 30자 )`}</span>
             </div>
             <div>
               <h4>링크</h4>
@@ -128,7 +131,7 @@ export default function NewMessagePage() {
           </div>
         }
 
-        <div>
+        <div className={styles.dateBox}>
           <h3>예약 발송</h3>
           <DatePicker
             shouldCloseOnSelect={false} // 날짜 선택시 달력 닫히지 않도록 설정
